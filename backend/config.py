@@ -5,6 +5,19 @@ DIR_BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(DIR_BASE) 
 import datetime
 
+# sql config
+hostVal = "127.0.0.1"
+portVal = 3306
+userVal = "root"
+passwordVal = ""
+databaseVal = "web3_exchange_data"
+# ssl_mode="VERIFY_IDENTITY",
+sslVal = {
+    "ca": "/etc/ssl/cert.pem"
+}
+
+
+
 # proxies setting
 proxy = {
     'http': 'http://127.0.0.1:7890',
@@ -19,4 +32,3 @@ dateArray1 = datetime.datetime.strptime(datastr1, '%Y-%m-%d %H:%M:%S')
 dateArray2 = datetime.datetime.strptime(datastr2, '%Y-%m-%d %H:%M:%S')
 startTimeSatmp = int(dateArray1.timestamp() * 1000)
 endTimeSatmp = int(dateArray2.timestamp() * 1000)
-         

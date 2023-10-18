@@ -14,7 +14,8 @@ from tenacity import retry, stop_after_attempt, retry_if_exception_type
 import datetime
 
 exListNeedAPIKey = ['coinbase']
-exList = ['binance', 'kraken', 'bybit', 'kucoin','okx', 'bitstamp','bitfinex','gateio',]
+#exList = ['binance', 'kraken', 'bybit', 'kucoin','okx', 'bitstamp','bitfinex','gateio',]
+exList = ['binance', 'okx','huobi']
 
 @retry(stop=stop_after_attempt(5), retry=retry_if_exception_type(ccxt.NetworkError), reraise=True)
 def exconn(exchangeID):

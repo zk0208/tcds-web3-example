@@ -1,12 +1,20 @@
 import pymysql
 import numpy as np
 import pandas as pd
+import config as conf
 
 # sql connect & settings
 
 class dbconn():
     def __init__(self) :
         self.sqlConnect = pymysql.connect(
+            host = conf.hostVal,
+            port = conf.portVal,
+            user = conf.userVal,
+            password = conf.passwordVal,
+            database = conf.databaseVal,
+            # ssl_mode="VERIFY_IDENTITY",
+            ssl = conf.sslVal
             # host= '127.0.0.1',
             # user= 'root',
             # passwd= 'MySQL1234#',
