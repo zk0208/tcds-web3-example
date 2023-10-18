@@ -15,6 +15,7 @@
 ## 2、 Configuring SQL information
 
 - Replace the following fields in __*config.py*__, including host , port, user and password, etc.
+- SQL information can be obtained from [TiDB Cloud](https://dev.tidbcloud.com/console/clusters).
 
 ```python
     # example
