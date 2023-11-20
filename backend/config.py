@@ -9,7 +9,7 @@ import datetime
 hostVal = "127.0.0.1"
 portVal = 3306
 userVal = "root"
-passwordVal = ""
+passwordVal = "MySQL1234#"
 databaseVal = "web3_exchange_data"
 # ssl_mode="VERIFY_IDENTITY",
 sslVal = {

@@ -15,15 +15,31 @@ class dbconn():
             database = conf.databaseVal,
             # ssl_mode="VERIFY_IDENTITY",
             ssl = conf.sslVal
-            # host= '127.0.0.1',
-            # user= 'root',
-            # passwd= 'MySQL1234#',
-            # port= 3306,
-            # db= 'web3_exchange_data',
-            # charset= 'utf8mb4'
             )
         self.cursor = self.sqlConnect.cursor()
+        self.createTable()
     
+    def createTable(self):
+        try:
+            self.cursor.execute("CREATE TABLE if not exists index_candlesticks (`id` int(10) unsigned NOT NULL AUTO_INCREMENT,   \
+                `exchange` varchar(100) NOT NULL,`instid` varchar(100) NOT NULL,`time` timestamp NULL DEFAULT NULL, \
+                `open_price` float DEFAULT NULL,`high_price` float DEFAULT NULL,`low_price` float DEFAULT NULL, \
+                `close_price` float DEFAULT NULL,`time_interal` varchar(100) DEFAULT NULL,PRIMARY KEY (`id`),   \
+                UNIQUE KEY `exchange_instid_time` (`exchange`,`instid`,`time`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;")
+            self.cursor.execute("CREATE TABLE if not exists hot_ranking (`id` int(10) unsigned NOT NULL AUTO_INCREMENT, \
+                `instid` varchar(100) NOT NULL,`time` timestamp NULL DEFAULT NULL,`hot_score` float DEFAULT NULL,   \
+                PRIMARY KEY (`id`) ,UNIQUE KEY `instid_time` (`time`,`instid`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;")
+            self.cursor.execute("CREATE TABLE if not exists web3_exchange_data.crypto_info (`id` int(10) unsigned NOT NULL AUTO_INCREMENT,  \
+                `exchange` varchar(100) NOT NULL,`instid` varchar(100) NOT NULL,`update_time` timestamp NULL DEFAULT NULL,  \
+                `curr_price` float DEFAULT NULL,`base_volume` float DEFAULT NULL,PRIMARY KEY (`id`) ,   \
+                UNIQUE KEY `exchange_instid_time` (`exchange`,`instid`,`update_time`)   \
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;")
+            self.sqlConnect.commit()
+        except:
+            self.sqlConnect.rollback()
+        else:
+            self.sqlConnect.commit()
+
     def insertDB(self, sql, datalist):
         try:
             if len(datalist) > 0 and isinstance(datalist[0], (tuple,list)) == False :
@@ -39,7 +55,9 @@ class dbconn():
     def dbClose(self):
         self.cursor.close()
         self.sqlConnect.close()
-# 之前的数据可能存在问题，需要改一下
+
+# 根据表的定义，需要改一下
+
 sqlCommandCandle = "INSERT INTO index_candlesticks \
 (exchange,instid,time,open_price,high_price,low_price,close_price,time_interal) \
 VALUES(%s,%s,%s,%s,%s,%s,%s,%s);"
