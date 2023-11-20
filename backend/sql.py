@@ -29,7 +29,7 @@ class dbconn():
             self.cursor.execute("CREATE TABLE if not exists hot_ranking (`id` int(10) unsigned NOT NULL AUTO_INCREMENT, \
                 `instid` varchar(100) NOT NULL,`time` timestamp NULL DEFAULT NULL,`hot_score` float DEFAULT NULL,   \
                 PRIMARY KEY (`id`) ,UNIQUE KEY `instid_time` (`time`,`instid`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;")
-            self.cursor.execute("CREATE TABLE if not exists web3_exchange_data.crypto_info (`id` int(10) unsigned NOT NULL AUTO_INCREMENT,  \
+            self.cursor.execute("CREATE TABLE if not exists crypto_info (`id` int(10) unsigned NOT NULL AUTO_INCREMENT,  \
                 `exchange` varchar(100) NOT NULL,`instid` varchar(100) NOT NULL,`update_time` timestamp NULL DEFAULT NULL,  \
                 `curr_price` float DEFAULT NULL,`base_volume` float DEFAULT NULL,PRIMARY KEY (`id`) ,   \
                 UNIQUE KEY `exchange_instid_time` (`exchange`,`instid`,`update_time`)   \
