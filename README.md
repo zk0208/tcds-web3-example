@@ -38,9 +38,9 @@ At this point, go back to the webpage of the DataAPP, and you will see a deploym
 
 We have completed the creation of DataAPP and now we are testing if our newly created DataAPP works appropriately.
 
-#### Create an ApiKey {publickey}:{privatekey} in DataAPP and save it to local.
+#### Create an ApiKey {publickey}:{privatekey} in DataAPP and save it to local
 
-#### Choose an endpoint and test if it is working correctly.
+#### Choose an endpoint and test if it is working correctly
 
 Click on any endpoint in DataAPP and click code example in the right side panel; click online environment in the pop-up window, copy the curl command in it to local.
 
